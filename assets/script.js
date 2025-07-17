@@ -44,7 +44,7 @@ const generateCard = (member) => {
     <div class="col-12 col-md-6 col-lg-4 d-flex">
       <div class="d-flex bg-black text-light w-100 p-1">
         <div class="cardleft">
-          <img class="img-fluid" src="${member.img}" alt="${member.name}"">
+          <img class="img-fluid w-100" src="${member.img}" alt="${member.name}"">
         </div>
         <div class="cardright ms-4">
           <div class="name fs-5 text-uppercase">${member.name}</div>
@@ -60,8 +60,34 @@ const generateCard = (member) => {
 
 // recupero elementi
 const teamContainer = document.getElementById('team-members');
+const addMember = document.getElementById('add-member');
 
 for (let i = 0; i < teamMembers.length; i++) {
   let card = generateCard(teamMembers[i]);
   teamContainer.innerHTML += card;
 }
+
+addMember.addEventListener('click', function (e) { 
+  e.preventDefault(); 
+
+  const name = document.getElementById('name').value;
+  const role = document.getElementById('role').value;
+  const img = document.getElementById('img').value;
+
+  if (name == '' || role == '' || img == '') {
+    alert('Tutti i campi sono obbligatori');
+    return;
+  }
+
+  const newMember = {
+    name,
+    role,
+    img
+  };
+
+  teamMembers.push(newMember);
+
+  document.getElementById('name').value = '';
+  document.getElementById('role').value = '';
+  document.getElementById('img').value = '';
+});
