@@ -36,3 +36,34 @@ const teamMembers = [
     img: "img/female3.png"
   }
 ];
+
+// funzione struttura card
+const generateCard = (member) => {
+
+const memberCard = `<div class="col-4 d-flex align-items-start bg-black p-1">
+<div class="cardleft">
+  <img class="img-fluid" src="${member.img}">
+</div>
+<div class="cardright ms-5 mt-2 ">
+<div class="name text-light fs-5 text-uppercase">${member.name}</div>
+<div class="role text-light-emphasis">${member.role}</div>
+<div class="email text-primary">${member.email}</div>
+</div>
+</div>`
+
+
+return memberCard;
+
+}
+
+
+// recupero elementi
+const teamContainer = document.getElementById('team-members');
+
+
+// ciclo
+for(let i=0 ; i<teamMembers.length; i++) {
+let card = generateCard(teamMembers[i]);
+
+teamContainer.innerHTML += card;
+}
